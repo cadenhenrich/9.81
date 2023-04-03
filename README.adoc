@@ -1,0 +1,22 @@
+= 9.81
+:description: A Game With Weight
+
+== What is 9.81?
+
+_9.81_ is a 2D action platformer developed at Northeastern University by
+students of the GAME 3700 course. The core aim of the game was to have one
+central combat mechanic, that being gravity manipulation. _9.81_ was created
+developed in Unity using the Universal Render Pipeline.
+
+== How do I run 9.81?
+
+This repository contains the Unity project for the game, and therefore must
+be run using the engine. If you'd like to run an external build, please see
+the RUNME.adoc file.
+
+== Credits
+
+* Lucy Gold
+* Taksin Mann
+* Jordan Brown
+* Caden Henrich
