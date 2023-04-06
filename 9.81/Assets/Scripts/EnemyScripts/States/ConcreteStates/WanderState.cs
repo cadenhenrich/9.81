@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class WanderState : EnemyBaseState
 {
-    public override void OnCollisionEnter(EnemyStateManager stateManager)
+    public override void OnCollisionEnter(EnemyStateManager stateManager, Collision collision)
     {
         throw new System.NotImplementedException();
     }

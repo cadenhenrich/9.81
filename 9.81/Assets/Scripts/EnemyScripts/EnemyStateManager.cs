@@ -2,8 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class EnemyStateManager : MonoBehaviour
 {
+
+    [HideInInspector] public GameObject[] wanderPoints;
+
+
     public EnemyBaseState currentState;
 
     public WanderState wanderState;
@@ -25,9 +30,22 @@ public class EnemyStateManager : MonoBehaviour
         currentState.UpdateState(this);
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        currentState.OnCollisionEnter(this, collision);
+    }
+
     public void ChangeState(EnemyBaseState state)
     {
         currentState = state;
         state.OnEnterState(this);
     }
+
+    public GameObject[] WanderPoints
+    {
+        get { return wanderPoints; }
+        set { wanderPoints = value; }
+    }
+
+    
 }

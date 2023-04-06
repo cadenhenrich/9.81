@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ChaseState : EnemyBaseState
 {
-    public override void OnCollisionEnter(EnemyStateManager stateManager)
+    public override void OnCollisionEnter(EnemyStateManager stateManager, Collision collision)
     {
         throw new System.NotImplementedException();
     }
