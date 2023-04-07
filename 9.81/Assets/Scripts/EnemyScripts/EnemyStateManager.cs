@@ -16,11 +16,12 @@ public class EnemyStateManager : MonoBehaviour
     public ChargingState chargingState;
     public AttackState attackState;
     public AlertState alertState;
+    public IdleState idleState;
     
     // Start is called before the first frame update
     void Start()
     {
-        currentState = wanderState;
+        currentState = idleState;
         currentState.OnEnterState(this);
     }
 

@@ -5,7 +5,7 @@ public class WanderState : EnemyBaseState
 {
     public override void OnCollisionEnter(EnemyStateManager stateManager, Collision collision)
     {
-        throw new System.NotImplementedException();
+        stateManager.ChangeState(stateManager.alertState);
     }
 
     public override void OnEnterState(EnemyStateManager stateManager)

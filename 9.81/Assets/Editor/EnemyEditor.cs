@@ -25,6 +25,7 @@ public class EnemyEditor : Editor
             GameObject newWanderPoint = PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(path)) as GameObject;
             newWanderPoint.transform.parent = enemy.transform.parent;
             newWanderPoint.name = "WanderPoint" + enemy.wanderPoints.Length;
+            newWanderPoint.transform.position = enemy.transform.position;
             Refactor(enemy);
             // Add the new wander point to the enemy's wanderPoints array
             ArrayUtility.Add(ref enemy.wanderPoints, newWanderPoint);
