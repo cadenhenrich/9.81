@@ -32,6 +32,8 @@ public class PlayerMovementController : MonoBehaviour
   private float groundCheckDistance;
   [SerializeField]
   private float gravity;
+  [SerializeField]
+  private float earlyFallOnset;
 
   private bool isGrounded;
 
@@ -44,7 +46,8 @@ public class PlayerMovementController : MonoBehaviour
     col = GetComponent<Collider2D>();
   }
 
-  void FixedUpdate()
+  // Update is called every frame
+  void Update()
   {
     // Decrease velocity
     Fall();
@@ -64,20 +67,19 @@ public class PlayerMovementController : MonoBehaviour
 
     if (axis != 0)
     {
-      velocity.x += axis * acceleration * Time.fixedDeltaTime;
+      velocity.x += axis * acceleration * Time.deltaTime;
     }
   }
 
   private void Fall()
   {
-    velocity.y = rb.velocity.y;
-
     if (!isGrounded)
     {
-      velocity.y -= gravity * gravity * Time.fixedDeltaTime;
+      velocity.y -= gravity * gravity * Time.deltaTime;
     }
     else
     {
+      velocity.y = rb.velocity.y;
       isGrounded = Physics2D.Raycast(new Vector2(col.bounds.center.x -
           col.bounds.extents.x, col.bounds.min.y), Vector2.down,
           groundCheckDistance, groundLayer) ||
@@ -87,19 +89,34 @@ public class PlayerMovementController : MonoBehaviour
     }
   }
 
+  private void FallEarly()
+  {
+    velocity.y = 0;
+  }
+
   private void Jump()
   {
     if (isGrounded && Input.GetAxisRaw(jumpAxis) > 0)
     {
       isGrounded = false;
       velocity.y = jumpSpeed;
+      return;
+    }
+
+    // Fall early if jump is released before the peak
+    if (velocity.y > 0 && Input.GetAxisRaw(jumpAxis) <= 0)
+    {
+      Invoke("FallEarly", earlyFallOnset);
     }
   }
 
   private void ApplyFriction()
   {
-    velocity.x = rb.velocity.x;
-    velocity.x = Mathf.MoveTowards(velocity.x, 0, friction * Time.fixedDeltaTime);
+    if (!col.IsTouchingLayers(groundLayer))
+    {
+      velocity.x = rb.velocity.x;
+    }
+    velocity.x = Mathf.MoveTowards(velocity.x, 0, friction * Time.deltaTime);
   }
 
   private void ApplyVelocity()
@@ -117,6 +134,10 @@ public class PlayerMovementController : MonoBehaviour
       {
         isGrounded = true;
         return;
+      }
+      else if (contact.point.y >= col.bounds.center.y + col.bounds.extents.y)
+      {
+        velocity.y = rb.velocity.y;
       }
     }
   }

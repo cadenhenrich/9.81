@@ -370,6 +370,7 @@ MonoBehaviour:
   jumpSpeed: 30
   groundCheckDistance: 0.1
   gravity: 10
+  earlyFallOnset: 0.5
 --- !u!50 &396930365
 Rigidbody2D:
   serializedVersion: 4
