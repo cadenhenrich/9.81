@@ -28,12 +28,36 @@ public class PlayerMovementController : MonoBehaviour
   private string jumpAxis;
   [SerializeField]
   private float jumpSpeed;
+
+  [Space]
+
   [SerializeField]
   private float groundCheckDistance;
+
+  [Space]
+
   [SerializeField]
   private float gravity;
   [SerializeField]
+  private float maxFallSpeed;
+
+  [Space]
+
+  [SerializeField]
   private float earlyFallOnset;
+  [SerializeField]
+  private float earlyFallVelocity;
+
+  [Space]
+
+  [SerializeField]
+  private float apexThreshold;
+
+  [Space]
+
+  [SerializeField]
+  private float coyoteTime;
+  private bool inCoyoteTime;
 
   private bool isGrounded;
 
@@ -49,6 +73,9 @@ public class PlayerMovementController : MonoBehaviour
   // Update is called every frame
   void Update()
   {
+    // Check if player is grounded
+    CheckGrounded();
+
     // Decrease velocity
     Fall();
     ApplyFriction();
@@ -71,34 +98,70 @@ public class PlayerMovementController : MonoBehaviour
     }
   }
 
+  private void CoyoteTime()
+  {
+    inCoyoteTime = false;
+  }
+
+  private void CheckGrounded()
+  {
+    if (Physics2D.Raycast(new Vector2(col.bounds.min.x, col.bounds.min.y),
+          Vector2.down, groundCheckDistance, groundLayer) ||
+        Physics2D.Raycast(new Vector2(col.bounds.max.x, col.bounds.min.y),
+          Vector2.down, groundCheckDistance, groundLayer) ||
+        Physics2D.Raycast(new Vector2(col.bounds.center.x,
+                col.bounds.min.y), Vector2.down,
+              groundCheckDistance, groundLayer))
+    {
+      isGrounded = true;
+      inCoyoteTime = false;
+    }
+  }
+
   private void Fall()
   {
     if (!isGrounded)
     {
-      velocity.y -= gravity * gravity * Time.deltaTime;
+      if (-apexThreshold < velocity.y && velocity.y < apexThreshold)
+      {
+        velocity.y -= gravity * Time.deltaTime;
+      }
+      else
+      {
+        velocity.y -= gravity * gravity * Time.deltaTime;
+      }
+      velocity.y = Mathf.Max(velocity.y, -maxFallSpeed);
     }
     else
     {
       velocity.y = rb.velocity.y;
-      isGrounded = Physics2D.Raycast(new Vector2(col.bounds.center.x -
-          col.bounds.extents.x, col.bounds.min.y), Vector2.down,
-          groundCheckDistance, groundLayer) ||
-        Physics2D.Raycast(new Vector2(col.bounds.center.x +
-          col.bounds.extents.x, col.bounds.min.y), Vector2.down,
-          groundCheckDistance, groundLayer);
+      if (!(Physics2D.Raycast(new Vector2(col.bounds.min.x, col.bounds.min.y),
+              Vector2.down, groundCheckDistance, groundLayer) ||
+            Physics2D.Raycast(new Vector2(col.bounds.max.x, col.bounds.min.y),
+              Vector2.down, groundCheckDistance, groundLayer)))
+      {
+        isGrounded = false;
+        inCoyoteTime = true;
+        Invoke("CoyoteTime", coyoteTime);
+      }
+      else
+      {
+        isGrounded = true;
+      }
     }
   }
 
   private void FallEarly()
   {
-    velocity.y = 0;
+    velocity.y = -earlyFallVelocity;
   }
 
   private void Jump()
   {
-    if (isGrounded && Input.GetAxisRaw(jumpAxis) > 0)
+    if ((isGrounded || inCoyoteTime) && Input.GetAxisRaw(jumpAxis) > 0)
     {
       isGrounded = false;
+      inCoyoteTime = false;
       velocity.y = jumpSpeed;
       return;
     }
@@ -130,12 +193,13 @@ public class PlayerMovementController : MonoBehaviour
   {
     foreach (ContactPoint2D contact in collision.contacts)
     {
-      if (contact.point.y <= col.bounds.center.y - col.bounds.extents.y)
+      if (contact.point.x > col.bounds.min.x && contact.point.x < col.bounds.max.x &&
+          contact.point.y <= col.bounds.min.y)
       {
         isGrounded = true;
         return;
       }
-      else if (contact.point.y >= col.bounds.center.y + col.bounds.extents.y)
+      else if (contact.point.y >= col.bounds.max.y)
       {
         velocity.y = rb.velocity.y;
       }

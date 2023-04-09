@@ -370,7 +370,11 @@ MonoBehaviour:
   jumpSpeed: 30
   groundCheckDistance: 0.1
   gravity: 10
-  earlyFallOnset: 0.5
+  maxFallSpeed: 18
+  earlyFallOnset: 0.01
+  earlyFallVelocity: 0.5
+  apexThreshold: 0.5
+  coyoteTime: 0.05
 --- !u!50 &396930365
 Rigidbody2D:
   serializedVersion: 4
