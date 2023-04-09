@@ -72,6 +72,14 @@ public class PlayerMovementController : MonoBehaviour
   [SerializeField, Tooltip("Bump-up ledge threshold")]
   private float bumpThreshold;
 
+  [Space]
+
+  // If the player presses jump just before they hit the ground
+  // they should still jump when they are grounded
+  [SerializeField, Tooltip("Jump queue time")]
+  private float jumpQueueThreshold;
+  private bool jumpQueued;
+
   private bool isGrounded;
 
   private Vector2 velocity;
@@ -169,14 +177,28 @@ public class PlayerMovementController : MonoBehaviour
     velocity.y = -earlyFallVelocity;
   }
 
+  private void ResetJumpQueue()
+  {
+    jumpQueued = false;
+  }
+
   private void Jump()
   {
-    if ((isGrounded || inCoyoteTime) && Input.GetAxisRaw(jumpAxis) > 0)
+    if (jumpQueued || Input.GetAxisRaw(jumpAxis) > 0)
     {
-      isGrounded = false;
-      inCoyoteTime = false;
-      velocity.y = jumpSpeed;
-      return;
+      if (isGrounded || inCoyoteTime)
+      {
+        isGrounded = false;
+        inCoyoteTime = false;
+        jumpQueued = false;
+        velocity.y = jumpSpeed;
+        return;
+      }
+      else if (!(jumpQueued || isGrounded))
+      {
+        jumpQueued = true;
+        Invoke("ResetJumpQueue", jumpQueueThreshold);
+      }
     }
 
     // Fall early if jump is released before the peak

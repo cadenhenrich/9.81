@@ -477,7 +477,7 @@ MonoBehaviour:
   maxSpeed: 6.6666665
   acceleration: 33.333332
   friction: 20
-  jumpAxis: Vertical
+  jumpAxis: Jump
   jumpSpeed: 18
   groundCheckDistance: 0.05
   gravity: 6.6666665
@@ -487,6 +487,7 @@ MonoBehaviour:
   apexThreshold: 0.33333334
   coyoteTime: 0.05
   bumpThreshold: 0.06666667
+  jumpQueueThreshold: 0.1
 --- !u!50 &396930365
 Rigidbody2D:
   serializedVersion: 4
