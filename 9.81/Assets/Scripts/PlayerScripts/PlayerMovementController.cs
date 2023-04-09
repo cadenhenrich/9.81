@@ -14,6 +14,7 @@ public class PlayerMovementController : MonoBehaviour
   private LayerMask groundLayer;
 
   [Header("Movement")]
+  // Horizontal movement controls
   [SerializeField]
   private string movementAxis;
   [SerializeField]
@@ -24,6 +25,7 @@ public class PlayerMovementController : MonoBehaviour
   private float friction;
 
   [Header("Jump")]
+  // Jump controls
   [SerializeField]
   private string jumpAxis;
   [SerializeField]
@@ -31,11 +33,13 @@ public class PlayerMovementController : MonoBehaviour
 
   [Space]
 
+  // Grounding checks
   [SerializeField]
   private float groundCheckDistance;
 
   [Space]
 
+  // Basic falling
   [SerializeField]
   private float gravity;
   [SerializeField]
@@ -43,6 +47,7 @@ public class PlayerMovementController : MonoBehaviour
 
   [Space]
 
+  // Early fall if player releases jump
   [SerializeField]
   private float earlyFallOnset;
   [SerializeField]
@@ -50,14 +55,22 @@ public class PlayerMovementController : MonoBehaviour
 
   [Space]
 
+  // Apex extension
   [SerializeField]
   private float apexThreshold;
 
   [Space]
 
+  // Coyote time
   [SerializeField]
   private float coyoteTime;
   private bool inCoyoteTime;
+
+  [Space]
+
+  // Bump the player up an edge if they just barely don't make it
+  [SerializeField]
+  private float bumpThreshold;
 
   private bool isGrounded;
 
@@ -198,6 +211,12 @@ public class PlayerMovementController : MonoBehaviour
       {
         isGrounded = true;
         return;
+      }
+      else if (velocity.y > 0 &&
+          contact.point.x <= col.bounds.min.x && contact.point.x >= col.bounds.max.x &&
+          contact.point.y <= col.bounds.min.y + bumpThreshold)
+      {
+        transform.Translate(new Vector2(0f,contact.point.y - col.bounds.min.y));
       }
       else if (contact.point.y >= col.bounds.max.y)
       {

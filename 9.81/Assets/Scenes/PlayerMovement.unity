@@ -375,6 +375,7 @@ MonoBehaviour:
   earlyFallVelocity: 0.5
   apexThreshold: 0.5
   coyoteTime: 0.05
+  bumpThreshold: 0.1
 --- !u!50 &396930365
 Rigidbody2D:
   serializedVersion: 4
