@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class AlertState : EnemyBaseState
 {
+    public override void FixedUpdateState(EnemyStateManager stateManager)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override void OnCollisionEnter(EnemyStateManager stateManager, Collision collision)
     {
         throw new System.NotImplementedException();

@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class WanderState : EnemyBaseState
 {
+    public override void FixedUpdateState(EnemyStateManager stateManager)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override void OnCollisionEnter(EnemyStateManager stateManager, Collision collision)
     {
         stateManager.ChangeState(stateManager.alertState);
