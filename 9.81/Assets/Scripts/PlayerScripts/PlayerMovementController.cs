@@ -10,66 +10,66 @@ public class PlayerMovementController : MonoBehaviour
   private Collider2D col;
 
   [Header("Ground")]
-  [SerializeField]
+  [SerializeField, Tooltip("Layer mask for ground")]
   private LayerMask groundLayer;
 
   [Header("Movement")]
   // Horizontal movement controls
-  [SerializeField]
-  private string movementAxis;
-  [SerializeField]
+  [SerializeField, Tooltip("Axis to move horizontally")]
+  private string movementAxis = "Horizontal";
+  [SerializeField, Tooltip("Maximum walk speed")]
   private float maxSpeed;
-  [SerializeField]
+  [SerializeField, Tooltip("Acceleration")]
   private float acceleration;
-  [SerializeField]
+  [SerializeField, Tooltip("Friction (slow down)")]
   private float friction;
 
   [Header("Jump")]
   // Jump controls
-  [SerializeField]
-  private string jumpAxis;
-  [SerializeField]
+  [SerializeField, Tooltip("Axis to jump")]
+  private string jumpAxis = "Jump";
+  [SerializeField, Tooltip("Jump speed/height")]
   private float jumpSpeed;
 
   [Space]
 
   // Grounding checks
-  [SerializeField]
-  private float groundCheckDistance;
+  [SerializeField, Tooltip("Distance to check for ground")]
+  private float groundCheckDistance = 0.05f;
 
   [Space]
 
   // Basic falling
-  [SerializeField]
+  [SerializeField, Tooltip("Gravity")]
   private float gravity;
-  [SerializeField]
+  [SerializeField, Tooltip("Maximum fall speed")]
   private float maxFallSpeed;
 
   [Space]
 
   // Early fall if player releases jump
-  [SerializeField]
+  [SerializeField, Tooltip("Early fall onset (player releases jump)")]
   private float earlyFallOnset;
-  [SerializeField]
+  [SerializeField, Tooltip("Early fall velocity")]
   private float earlyFallVelocity;
 
   [Space]
 
   // Apex extension
-  [SerializeField]
+  [SerializeField, Tooltip("Apex threshold/air sustain")]
   private float apexThreshold;
 
   [Space]
 
   // Coyote time
-  [SerializeField]
+  [SerializeField, Tooltip("Coyote time")]
   private float coyoteTime;
-  private bool inCoyoteTime;
+  private bool inCoyoteTime = false;
 
   [Space]
 
   // Bump the player up an edge if they just barely don't make it
-  [SerializeField]
+  [SerializeField, Tooltip("Bump-up ledge threshold")]
   private float bumpThreshold;
 
   private bool isGrounded;
