@@ -15,10 +15,7 @@ public class WanderState : EnemyBaseState
 
     public override void OnEnterState(EnemyStateManager stateManager)
     {
-        throw new System.NotImplementedException();
-        /* 
-         
-         */
+        stateManager.pathingAgent.SetTarget(stateManager.wanderPoints[stateManager.currentWanderPoint].transform);
     }
 
     public override void UpdateState(EnemyStateManager stateManager)

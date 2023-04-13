@@ -6,7 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class PathingAgent : MonoBehaviour
 {
-    [HideInInspector] public float NEXT_WAYPOINT_DISTANCE { get; private set; } = 1f;
+    [HideInInspector] public float NEXT_WAYPOINT_DISTANCE { get; private set; } = 2f;
     [HideInInspector] public bool reachedEndOfPath = false;
     [HideInInspector] public Seeker seeker;
     [HideInInspector] public Path path;

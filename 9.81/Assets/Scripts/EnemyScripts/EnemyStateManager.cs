@@ -11,6 +11,7 @@ public class EnemyStateManager : MonoBehaviour
     [HideInInspector] public PathingAgent pathingAgent;
 
     [HideInInspector] public GameObject[] wanderPoints;
+    [HideInInspector] public int currentWanderPoint;
     [HideInInspector] public Transform target;
     [HideInInspector] public Rigidbody2D rb;
     
@@ -52,7 +53,7 @@ public class EnemyStateManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        currentState.OnCollisionEnter(this, collision);
+        //currentState.OnCollisionEnter(this, collision);
     }
 
     public void ChangeState(EnemyBaseState state)
