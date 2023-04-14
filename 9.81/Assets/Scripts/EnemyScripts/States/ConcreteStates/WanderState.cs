@@ -32,7 +32,7 @@ public class WanderState : EnemyBaseState
     {
         if (stateManager.CanSeeTarget())
         {
-            stateManager.ChangeState(stateManager.chaseState);
+            stateManager.ChangeState(stateManager.alertState);
         }
     }
 }
