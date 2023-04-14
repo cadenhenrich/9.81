@@ -16,6 +16,8 @@ MonoBehaviour:
   speed: 300
   jumpHeight: 5
   reactionTime: 0.2
-  RandomIdleTimeInSecondsWhileWandering: {x: 0, y: 0}
+  RandomIdleTimeInSecondsWhileWandering:
+    minSeconds: 0.5
+    maxSeconds: 2
   _typesOfAttacks: []
   targetTag: Player

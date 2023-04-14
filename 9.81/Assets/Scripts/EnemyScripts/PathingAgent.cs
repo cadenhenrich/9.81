@@ -15,13 +15,14 @@ public class PathingAgent : MonoBehaviour
 
     [SerializeField] Transform jumpDetector;
 
-    private bool isRefreshing;
+    private bool isRefreshing = false;
     private Transform target;
     private float reactionTime;
     private float speed;
     private float jumpHeight;
+    private Coroutine refreshCoroutine;
 
-    private void Start()
+    private void Awake()
     {
         rb= GetComponent<Rigidbody2D>();
         seeker= GetComponent<Seeker>();
@@ -30,6 +31,7 @@ public class PathingAgent : MonoBehaviour
     public void SetTarget(Transform target)
     {
         this.target= target;
+        seeker.StartPath(rb.position, target.position, OnPathComplete);
     }
 
     public void UpdateMovement()
@@ -75,16 +77,22 @@ public class PathingAgent : MonoBehaviour
 
     public void PathRefreshing(bool refresh)
     {
+        if (refresh && !isRefreshing)
+        {
+            isRefreshing = refresh;
+            refreshCoroutine = StartCoroutine(RefreshPath());
+        } else if (!refresh && isRefreshing)
+        {
+            StopCoroutine(refreshCoroutine);
+        }
+        
         isRefreshing = refresh;
-        StartCoroutine(RefreshPath());
     }
 
     void OnPathComplete(Path p)
     {
-        Debug.Log("Got path");
         if (!p.error)
         {
-            Debug.Log("Set path");
             path = p;
             currentWaypoint = 0;
         }
@@ -121,5 +129,10 @@ public class PathingAgent : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(jumpDetector.position, -Vector2.up, 0.2f);
         return hit.collider != null && hit.transform.gameObject.layer == 7;
+    }
+
+    public bool ReachedTarget()
+    {
+        return reachedEndOfPath;
     }
 }

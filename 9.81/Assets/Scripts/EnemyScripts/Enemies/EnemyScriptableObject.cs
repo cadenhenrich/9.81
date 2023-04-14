@@ -9,8 +9,9 @@ public class EnemyScriptableObject : ScriptableObject
     public int hitsCanTake;
     public float speed;
     public float jumpHeight;
+    public float detectionRadius;
     [Tooltip("The refresh rate of enemy pathing")] [Range(0.2f, 1f)] public float reactionTime;
-    [Tooltip("From/To")] public Vector2 RandomIdleTimeInSecondsWhileWandering;
+    [Tooltip("From/To")] public RangeData RandomIdleTimeInSecondsWhileWandering;
 
     [Header("Behaviors")]
     [Tooltip("Randomly selects an attack from this list")] public AttackScriptableObject[] _typesOfAttacks;
@@ -18,4 +19,11 @@ public class EnemyScriptableObject : ScriptableObject
 
     [Header("VFX/SFX")]
     Sprite sprite;
+}
+
+[System.Serializable]
+public class RangeData
+{
+    public float minSeconds;
+    public float maxSeconds;
 }

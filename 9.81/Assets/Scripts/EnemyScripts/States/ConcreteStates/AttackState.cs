@@ -8,7 +8,7 @@ public class AttackState : EnemyBaseState
         throw new System.NotImplementedException();
     }
 
-    public override void OnCollisionEnter(EnemyStateManager stateManager, Collision collision)
+    public override void OnStateCollisionEnter(EnemyStateManager stateManager, Collision2D collision)
     {
         throw new System.NotImplementedException();
     }
