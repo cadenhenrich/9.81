@@ -73,8 +73,9 @@ public class EnemyStateManager : MonoBehaviour
     public bool CanSeeTarget()
     {
         // agroTarget has to be within the detection radius
+        // and the raycast must not hit level terrain
         if (!(Vector2.Distance(transform.position, agroTarget.transform.position) <= enemyScriptableObject.detectionRadius)) { return false; }
-        Vector2 direction = transform.position- agroTarget.transform.position;
+        Vector2 direction = agroTarget.transform.position - transform.position;
         if (Physics2D.Raycast(transform.position, direction, enemyScriptableObject.detectionRadius, layerMask)) { return false; }
         return true;
 
