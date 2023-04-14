@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: BasicAttack
   m_EditorClassIdentifier: 
   damage: 0
-  range: 0
-  delay: 0
+  fireRange: 0
+  fireSpeed: 0
+  isMelee: 0
+  attackChargeUpInSeconds: 1
   _attackSequence: []

@@ -15,6 +15,7 @@ MonoBehaviour:
   hitsCanTake: 0
   speed: 300
   jumpHeight: 5
+  detectionRadius: 4
   reactionTime: 0.2
   RandomIdleTimeInSecondsWhileWandering:
     minSeconds: 0.5
