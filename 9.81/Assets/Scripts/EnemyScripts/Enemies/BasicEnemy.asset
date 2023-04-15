@@ -16,9 +16,10 @@ MonoBehaviour:
   speed: 300
   jumpHeight: 5
   detectionRadius: 4
-  reactionTime: 0.2
+  reactionTime: 0.5
   RandomIdleTimeInSecondsWhileWandering:
     minSeconds: 0.5
     maxSeconds: 2
-  _typesOfAttacks: []
+  _typesOfAttacks:
+  - {fileID: 11400000, guid: 3ce2555d737a89e468a5d91ca6719947, type: 2}
   targetTag: Player

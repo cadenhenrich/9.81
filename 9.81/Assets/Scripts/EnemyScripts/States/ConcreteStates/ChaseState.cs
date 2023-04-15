@@ -1,5 +1,4 @@
 using UnityEngine;
-using Pathfinding;
 
 public class ChaseState : EnemyBaseState
 {
@@ -19,6 +18,10 @@ public class ChaseState : EnemyBaseState
     public override void UpdateState(EnemyStateManager stateManager)
     {
         //throw new System.NotImplementedException();
+        if (stateManager.InAttackRange())
+        {
+            stateManager.ChangeState(stateManager.chargingState);
+        }
     }
 
     public override void FixedUpdateState(EnemyStateManager stateManager)

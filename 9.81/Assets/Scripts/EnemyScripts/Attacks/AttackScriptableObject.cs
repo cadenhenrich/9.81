@@ -10,5 +10,5 @@ public class AttackScriptableObject : ScriptableObject
     public float fireSpeed;
     public bool isMelee;
     public float attackChargeUpInSeconds;
-    public AttackScriptableObject[] _attackSequence;
+    //public AttackScriptableObject[] _attackSequence;
 }

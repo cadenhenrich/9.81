@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 1235702678545320629}
   - component: {fileID: 1929289606185344681}
   - component: {fileID: 608208672}
+  - component: {fileID: 3556536660687046027}
   m_Layer: 0
   m_Name: EnemyBody
   m_TagString: Untagged
@@ -206,10 +207,12 @@ MonoBehaviour:
   exclaimationPoint: {fileID: 7563096912801312443}
   agroTarget: {fileID: 0}
   pathingAgent: {fileID: 0}
+  attackAgent: {fileID: 0}
   wanderPoints: []
   currentWanderPoint: 0
   target: {fileID: 0}
   rb: {fileID: 0}
+  currentAttack: 0
 --- !u!114 &1929289606185344681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,6 +258,18 @@ MonoBehaviour:
   currentWaypoint: 0
   rb: {fileID: 0}
   jumpDetector: {fileID: 1179628661821943405}
+--- !u!114 &3556536660687046027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7022923148550789892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d88477b952882f438dbcb0450d2e6a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7030850381831922901
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AlertState : EnemyBaseState
 {
-    private bool isAlert;
+    private bool isAlert = false;
 
     public override void FixedUpdateState(EnemyStateManager stateManager)
     {

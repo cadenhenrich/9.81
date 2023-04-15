@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b8edd8a8020d44382d4aab5c431381, type: 3}
   m_Name: BasicAttack
   m_EditorClassIdentifier: 
-  damage: 0
-  fireRange: 0
-  fireSpeed: 0
-  isMelee: 0
+  damage: 1
+  fireRange: 5
+  fireSpeed: 5
+  isMelee: 1
   attackChargeUpInSeconds: 1
   _attackSequence: []

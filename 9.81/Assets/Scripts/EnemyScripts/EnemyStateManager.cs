@@ -4,6 +4,7 @@ using UnityEngine;
 using Pathfinding;
 using UnityEditor;
 using UnityEngine.UI;
+using System;
 
 public class EnemyStateManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class EnemyStateManager : MonoBehaviour
     [SerializeField] public GameObject exclaimationPoint;
     [HideInInspector] public GameObject agroTarget;
     [HideInInspector] public PathingAgent pathingAgent;
+    [HideInInspector] public AttackAgent attackAgent;
 
     public GameObject[] wanderPoints;
     
@@ -29,6 +31,8 @@ public class EnemyStateManager : MonoBehaviour
     public AttackState attackState = new AttackState();
     public AlertState alertState = new AlertState();
     public IdleState idleState = new IdleState();
+    public int currentAttack = 0;
+    private Vector2 attackDirection;
 
     // Start is called before the first frame update
     private void Awake()
@@ -36,6 +40,7 @@ public class EnemyStateManager : MonoBehaviour
         currentState = wanderState;
         rb = GetComponent<Rigidbody2D>();
         agroTarget = GameObject.FindGameObjectWithTag(enemyScriptableObject.targetTag);
+        attackAgent = GetComponent<AttackAgent>();
         pathingAgent = GetComponent<PathingAgent>();
         pathingAgent.SetRefreshRate(enemyScriptableObject.reactionTime);
         pathingAgent.SetSpeed(enemyScriptableObject.speed);
@@ -75,16 +80,30 @@ public class EnemyStateManager : MonoBehaviour
         // agroTarget has to be within the detection radius
         // and the raycast must not hit level terrain
         if (!(Vector2.Distance(transform.position, agroTarget.transform.position) <= enemyScriptableObject.detectionRadius)) { return false; }
+
         Vector2 direction = agroTarget.transform.position - transform.position;
         if (Physics2D.Raycast(transform.position, direction, enemyScriptableObject.detectionRadius, layerMask)) { return false; }
+
         return true;
 
+    }
+
+    public bool InAttackRange()
+    {
+        if (Vector2.Distance(transform.position, agroTarget.transform.position) > enemyScriptableObject._typesOfAttacks[currentAttack].fireRange) { return false; }
+
+        return true;
     }
 
     public GameObject[] WanderPoints
     {
         get { return wanderPoints; }
         set { wanderPoints = value; }
+    }
+
+    public void SaveAttackDirection ()
+    {
+        attackDirection = new Vector2(agroTarget.transform.position.x, agroTarget.transform.position.y);
     }
 
     private void OnDrawGizmos()
@@ -100,5 +119,12 @@ public class EnemyStateManager : MonoBehaviour
             //Gizmos.DrawRay(ray);
         }
         
+    }
+
+    //currently will only do lunging melee attacks
+    public void ExecuteAttack(AttackScriptableObject attackScriptableObject)
+    {
+        
+        attackAgent.ExecuteMovementAttack(rb, attackDirection, attackScriptableObject);
     }
 }
