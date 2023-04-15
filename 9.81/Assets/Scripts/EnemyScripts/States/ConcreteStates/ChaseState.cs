@@ -18,7 +18,8 @@ public class ChaseState : EnemyBaseState
     public override void UpdateState(EnemyStateManager stateManager)
     {
         //throw new System.NotImplementedException();
-        if (stateManager.InAttackRange())
+        Debug.Log(stateManager.canAttack);
+        if (stateManager.CanSeeTarget() && stateManager.InAttackRange() && stateManager.canAttack)
         {
             stateManager.ChangeState(stateManager.chargingState);
         }

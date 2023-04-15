@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   fireRange: 5
-  fireSpeed: 5
+  fireSpeed: 10
   isMelee: 1
   attackChargeUpInSeconds: 1
-  _attackSequence: []

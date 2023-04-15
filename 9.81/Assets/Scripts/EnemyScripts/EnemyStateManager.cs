@@ -33,10 +33,12 @@ public class EnemyStateManager : MonoBehaviour
     public IdleState idleState = new IdleState();
     public int currentAttack = 0;
     private Vector2 attackDirection;
+    [HideInInspector] public bool canAttack;
 
     // Start is called before the first frame update
     private void Awake()
     {
+        canAttack = true;
         currentState = wanderState;
         rb = GetComponent<Rigidbody2D>();
         agroTarget = GameObject.FindGameObjectWithTag(enemyScriptableObject.targetTag);
