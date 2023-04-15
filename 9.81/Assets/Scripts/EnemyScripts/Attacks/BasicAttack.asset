@@ -17,3 +17,4 @@ MonoBehaviour:
   fireSpeed: 10
   isMelee: 1
   attackChargeUpInSeconds: 1
+  attackCooldownInSeconds: 2
