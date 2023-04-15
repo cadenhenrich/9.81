@@ -499,10 +499,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pushForce: 12
-  pushRadius: 3
+  pushEffectRadius: 10
+  pushUseRadius: 0
   pushCooldown: 1
   pullForce: 15
-  pullRadius: 3
+  pullEffectRadius: 10
+  pullUseRadius: 0
   pullCooldown: 1
 --- !u!1 &381309171
 GameObject:
