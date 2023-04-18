@@ -127,12 +127,12 @@ public class PlayerMovementController : MonoBehaviour
   private void CheckGrounded()
   {
     if (Physics2D.Raycast(new Vector2(col.bounds.min.x, col.bounds.min.y),
-          Vector2.down, groundCheckDistance, groundLayer) ||
+          Vector2.down, groundCheckDistance) ||
         Physics2D.Raycast(new Vector2(col.bounds.max.x, col.bounds.min.y),
-          Vector2.down, groundCheckDistance, groundLayer) ||
+          Vector2.down, groundCheckDistance) ||
         Physics2D.Raycast(new Vector2(col.bounds.center.x,
                 col.bounds.min.y), Vector2.down,
-              groundCheckDistance, groundLayer))
+              groundCheckDistance))
     {
       isGrounded = true;
       inCoyoteTime = false;

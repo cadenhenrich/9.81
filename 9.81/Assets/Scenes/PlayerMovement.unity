@@ -788,7 +788,7 @@ GameObject:
   - component: {fileID: 396930365}
   - component: {fileID: 396930364}
   - component: {fileID: 396930366}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -951,14 +951,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d7ca8da373b98decad2bb6de49c1eaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pushAction:
+    m_Name: Push
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 850bd3a3-f8a6-493e-b78a-7f08ecd364f1
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 11ef9499-28e5-41bc-ab68-78e46b69345f
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Push
+      m_Flags: 0
+    m_Flags: 0
   pushForce: 10
   pushEffectRadius: 3
   pushUseRadius: 5
   pushCooldown: 1
+  pullAction:
+    m_Name: Pull
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b3b68922-9f45-44fb-8cb8-4b1462aab7b5
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: aaa4d5d1-3355-4e62-8d46-3793a3092274
+      m_Path: <Mouse>/rightButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Pull
+      m_Flags: 0
+    m_Flags: 0
   pullForce: 20
   pullEffectRadius: 3
   pullUseRadius: 5
   pullCooldown: 1
+  targetPrefab: {fileID: 6846138506289286957, guid: 6e3f21d1a60bffedaade9f37cc0c2fc2, type: 3}
+  pushEffectPrefab: {fileID: 0}
+  pullEffectPrefab: {fileID: 0}
 --- !u!1 &484713764
 GameObject:
   m_ObjectHideFlags: 0
@@ -2042,6 +2079,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1748951933247865557, guid: 43dfb3e894c91054cb0f793bd512eaea, type: 3}
+      propertyPath: logPathResults
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1748951933247865558, guid: 43dfb3e894c91054cb0f793bd512eaea, type: 3}
       propertyPath: m_RootOrder
       value: 4
