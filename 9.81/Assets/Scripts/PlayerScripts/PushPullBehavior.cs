@@ -88,7 +88,22 @@ public class PushPullBehavior : MonoBehaviour
 
     Vector3 GetPointInTargetRange(Vector3 point, float radius)
     {
-        return Vector3.ClampMagnitude(point - transform.position, radius) + transform.position;
+        Vector2 point2 = new Vector2(point.x, point.y);
+        Vector2 player2 = new Vector2(playerTransform.position.x, playerTransform.position.y);
+
+        Vector2 offset = point2 - player2;
+        float distance = Vector2.Distance(point2, player2);
+        if (distance > radius)
+        {
+            offset = Vector2.ClampMagnitude(offset, radius);
+        }
+
+        return transform.position + new Vector3(offset.x, offset.y, 0.0f);
+    }
+
+    Vector3 GetMouseScreenPosition()
+    {
+        return Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
     void OnTarget(InputAction.CallbackContext context)
@@ -96,9 +111,7 @@ public class PushPullBehavior : MonoBehaviour
         if (state == PushPullState.Idle)
         {
             targetInstance = Instantiate(targetPrefab,
-                new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
-                    Camera.main.ScreenToWorldPoint(Input.mousePosition).y,
-                    0),
+                GetPointInTargetRange(GetMouseScreenPosition(), pushEffectRadius),
                 Quaternion.identity);
             state = PushPullState.Targeting;
         }
@@ -108,9 +121,9 @@ public class PushPullBehavior : MonoBehaviour
     {
         if (state == PushPullState.Targeting)
         {
-            state = PushPullState.Pushing;
-            Push(targetInstance.transform.position);
             Destroy(targetInstance);
+            state = PushPullState.Pushing;
+            Push(GetPointInTargetRange(GetMouseScreenPosition(), pushEffectRadius));
         }
     }
 
@@ -118,9 +131,9 @@ public class PushPullBehavior : MonoBehaviour
     {
         if (state == PushPullState.Targeting)
         {
-            state = PushPullState.Pulling;
-            Pull(targetInstance.transform.position);
             Destroy(targetInstance);
+            state = PushPullState.Pulling;
+            Pull(GetPointInTargetRange(GetMouseScreenPosition(), pullEffectRadius));
         }
     }
 
@@ -129,10 +142,7 @@ public class PushPullBehavior : MonoBehaviour
         switch (state)
         {
             case PushPullState.Targeting:
-                targetInstance.transform.position =
-                    new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
-                        Camera.main.ScreenToWorldPoint(Input.mousePosition).y,
-                        0);
+                targetInstance.transform.position = GetPointInTargetRange(GetMouseScreenPosition(), pushEffectRadius);
                 break;
             default:
                 break;
@@ -141,22 +151,12 @@ public class PushPullBehavior : MonoBehaviour
 
     void Push(Vector2 coordinates)
     {
-        if (pushUseRadius != 0)
-        {
-            coordinates = Vector2.ClampMagnitude(coordinates, pushUseRadius);
-        }
-
         ApplyGravityEffect(coordinates, pushForce, pushUseRadius);
         StartCoroutine(Cooldown(pushCooldown));
     }
 
     void Pull(Vector2 coordinates)
     {
-        if (pullUseRadius != 0)
-        {
-            coordinates = Vector2.ClampMagnitude(coordinates, pullUseRadius);
-        }
-
         ApplyGravityEffect(coordinates, -pullForce, pullEffectRadius);
         StartCoroutine(Cooldown(pullCooldown));
     }
