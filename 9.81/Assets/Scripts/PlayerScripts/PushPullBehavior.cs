@@ -40,10 +40,6 @@ public class PushPullBehavior : MonoBehaviour
     [SerializeField]
     private float pullCooldown;
 
-    [Header("Misc")]
-    [SerializeField, Range(0, 1)]
-    private float bulletTimeCoefficient;
-
     [Header("VFX")]
     [SerializeField]
     private GameObject targetPrefab;
@@ -117,7 +113,6 @@ public class PushPullBehavior : MonoBehaviour
             targetInstance = Instantiate(targetPrefab,
                 GetPointInTargetRange(GetMouseScreenPosition(), radius),
                 Quaternion.identity);
-            Time.timeScale = bulletTimeCoefficient;
             state = PushPullState.Targeting;
         }
     }
@@ -136,7 +131,6 @@ public class PushPullBehavior : MonoBehaviour
     {
         if (state == PushPullState.Targeting)
         {
-            Time.timeScale = 1.0f;
             Destroy(targetInstance);
             state = PushPullState.Pushing;
             Push(GetPointInTargetRange(GetMouseScreenPosition(), pushEffectRadius));
@@ -147,7 +141,6 @@ public class PushPullBehavior : MonoBehaviour
     {
         if (state == PushPullState.Targeting)
         {
-            Time.timeScale = 1.0f;
             Destroy(targetInstance);
             state = PushPullState.Pulling;
             Pull(GetPointInTargetRange(GetMouseScreenPosition(), pullEffectRadius));

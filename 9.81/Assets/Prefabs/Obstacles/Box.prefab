@@ -149,3 +149,5 @@ MonoBehaviour:
   maxDamage: 10
   maxVelocity: 5
   velocityCoefficient: 1
+  bulletTimeCoefficient: 0.5
+  bulletTimeLength: 1

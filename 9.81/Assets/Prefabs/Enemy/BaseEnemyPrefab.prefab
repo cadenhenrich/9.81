@@ -130,6 +130,8 @@ GameObject:
   - component: {fileID: 1929289606185344681}
   - component: {fileID: 608208672}
   - component: {fileID: 3556536660687046027}
+  - component: {fileID: 1571230846388925722}
+  - component: {fileID: 7411822826612332882}
   m_Layer: 0
   m_Name: EnemyBody
   m_TagString: Untagged
@@ -208,11 +210,14 @@ MonoBehaviour:
   agroTarget: {fileID: 0}
   pathingAgent: {fileID: 0}
   attackAgent: {fileID: 0}
-  wanderPoints: []
+  wanderPoints:
+  - {fileID: 0}
+  - {fileID: 0}
   currentWanderPoint: 0
   target: {fileID: 0}
   rb: {fileID: 0}
   currentAttack: 0
+  canAttack: 0
 --- !u!114 &1929289606185344681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,6 +275,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d88477b952882f438dbcb0450d2e6a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1571230846388925722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7022923148550789892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d222654044eb2de1cb6c809d233b8455, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 50
+--- !u!114 &7411822826612332882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7022923148550789892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434f54882234957e4935a3e0e44c5fc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  cooldown: 1
 --- !u!1 &7030850381831922901
 GameObject:
   m_ObjectHideFlags: 0

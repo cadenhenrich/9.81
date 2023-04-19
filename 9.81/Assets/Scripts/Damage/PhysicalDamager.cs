@@ -5,12 +5,20 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PhysicalDamager : MonoBehaviour, Damager
 {
+    [Header("Damage")]
     [SerializeField]
     private float maxDamage;
     [SerializeField]
     private float maxVelocity;
     [SerializeField, Range(0, 1)]
     private float velocityCoefficient;
+
+    [Space]
+
+    [SerializeField, Range(0, 1)]
+    private float bulletTimeCoefficient;
+    [SerializeField]
+    private float bulletTimeLength;
 
     private Rigidbody2D rb;
 
@@ -21,7 +29,9 @@ public class PhysicalDamager : MonoBehaviour, Damager
 
     public void DealDamage(Damageable damageable)
     {
-        damageable.TakeDamage(maxDamage * (rb.velocity.magnitude * velocityCoefficient / maxVelocity));
+        float damage = maxDamage * (rb.velocity.magnitude * velocityCoefficient / maxVelocity);
+        damageable.TakeDamage(damage);
+        StartCoroutine(BulletTime(damage));
     }
 
     public float GetDamage()
@@ -32,5 +42,16 @@ public class PhysicalDamager : MonoBehaviour, Damager
     public bool CanDamagePlayer()
     {
         return false;
+    }
+
+    IEnumerator BulletTime(float damage)
+    {
+        Time.timeScale = Mathf.Lerp(1.0f, bulletTimeCoefficient, damage / maxDamage);
+        Time.fixedDeltaTime = Mathf.Lerp(0.02f, 0.02f * bulletTimeCoefficient, damage / maxDamage);
+
+        yield return new WaitForSeconds(bulletTimeLength);
+
+        Time.fixedDeltaTime = 0.02f;
+        Time.timeScale = 1.0f;
     }
 }
