@@ -40,6 +40,10 @@ public class PushPullBehavior : MonoBehaviour
     [SerializeField]
     private float pullCooldown;
 
+    [Header("Misc")]
+    [SerializeField, Range(0, 1)]
+    private float bulletTimeCoefficient;
+
     [Header("VFX")]
     [SerializeField]
     private GameObject targetPrefab;
@@ -53,8 +57,8 @@ public class PushPullBehavior : MonoBehaviour
 
     void Awake()
     {
-        pushAction.started += OnTarget;
-        pullAction.started += OnTarget;
+        pushAction.started += OnPushTarget;
+        pullAction.started += OnPullTarget;
 
         pushAction.canceled += OnPushCancel;
         pullAction.canceled += OnPullCancel;
@@ -106,21 +110,33 @@ public class PushPullBehavior : MonoBehaviour
         return Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
-    void OnTarget(InputAction.CallbackContext context)
+    void OnTarget(float radius)
     {
         if (state == PushPullState.Idle)
         {
             targetInstance = Instantiate(targetPrefab,
-                GetPointInTargetRange(GetMouseScreenPosition(), pushEffectRadius),
+                GetPointInTargetRange(GetMouseScreenPosition(), radius),
                 Quaternion.identity);
+            Time.timeScale = bulletTimeCoefficient;
             state = PushPullState.Targeting;
         }
+    }
+
+    void OnPushTarget(InputAction.CallbackContext context)
+    {
+        OnTarget(pushUseRadius);
+    }
+
+    void OnPullTarget(InputAction.CallbackContext context)
+    {
+        OnTarget(pullUseRadius);
     }
 
     void OnPushCancel(InputAction.CallbackContext context)
     {
         if (state == PushPullState.Targeting)
         {
+            Time.timeScale = 1.0f;
             Destroy(targetInstance);
             state = PushPullState.Pushing;
             Push(GetPointInTargetRange(GetMouseScreenPosition(), pushEffectRadius));
@@ -131,6 +147,7 @@ public class PushPullBehavior : MonoBehaviour
     {
         if (state == PushPullState.Targeting)
         {
+            Time.timeScale = 1.0f;
             Destroy(targetInstance);
             state = PushPullState.Pulling;
             Pull(GetPointInTargetRange(GetMouseScreenPosition(), pullEffectRadius));

@@ -5,10 +5,10 @@ using UnityEngine;
 public abstract class AbstractDamageable : MonoBehaviour, Damageable
 {
     [SerializeField]
-    private float maxHealth;
+    protected float maxHealth;
 
-    private float health;
-    private bool isAlive = true;
+    protected float health;
+    protected bool isAlive = true;
 
     public float GetHealth()
     {
@@ -30,7 +30,7 @@ public abstract class AbstractDamageable : MonoBehaviour, Damageable
         }
     }
 
-    void Die()
+    protected virtual void Die()
     {
         isAlive = false;
     }

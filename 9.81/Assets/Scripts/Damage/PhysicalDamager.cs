@@ -9,7 +9,7 @@ public class PhysicalDamager : MonoBehaviour, Damager
     private float maxDamage;
     [SerializeField]
     private float maxVelocity;
-    [SerializeField]
+    [SerializeField, Range(0, 1)]
     private float velocityCoefficient;
 
     private Rigidbody2D rb;
@@ -29,12 +29,8 @@ public class PhysicalDamager : MonoBehaviour, Damager
         return maxDamage;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public bool CanDamagePlayer()
     {
-        Damageable damageable = collision.gameObject.GetComponent<Damageable>();
-        if (damageable != null)
-        {
-            DealDamage(damageable);
-        }
+        return false;
     }
 }
