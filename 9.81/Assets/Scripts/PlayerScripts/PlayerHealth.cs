@@ -12,4 +12,10 @@ public class PlayerHealth : AbstractDamageable
             damager.DealDamage(this);
         }
     }
+
+    protected override void Die()
+    {
+        base.Die();
+        Debug.Log("Player died");
+    }
 }
