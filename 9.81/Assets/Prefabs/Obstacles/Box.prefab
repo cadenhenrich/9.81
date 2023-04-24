@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1964790438530448188}
   - component: {fileID: 1964790438530448189}
   - component: {fileID: 8489529521155996067}
+  - component: {fileID: 4383697779947581343}
   m_Layer: 7
   m_Name: Box
   m_TagString: Untagged
@@ -149,5 +150,21 @@ MonoBehaviour:
   maxDamage: 10
   maxVelocity: 5
   velocityCoefficient: 1
-  bulletTimeCoefficient: 0.5
-  bulletTimeLength: 1
+  bulletTimeCoefficient: 0.25
+  bulletTimeLength: 0.1
+--- !u!114 &4383697779947581343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964790438530448187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 4786603128675924754
+  updateError: 1
+  checkTime: 0.2
