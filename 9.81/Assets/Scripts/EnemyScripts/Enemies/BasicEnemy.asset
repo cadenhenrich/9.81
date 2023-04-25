@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2413d33acace5bf499acf743a0e2f48a, type: 3}
   m_Name: BasicEnemy
   m_EditorClassIdentifier: 
-  hitsCanTake: 0
+  hitsCanTake: 50
   speed: 200
   jumpHeight: 5
   detectionRadius: 4
@@ -20,6 +20,8 @@ MonoBehaviour:
   RandomIdleTimeInSecondsWhileWandering:
     minSeconds: 0.5
     maxSeconds: 2
+  xKnockbackScale: 3
+  yKnockbackScale: 3
   _typesOfAttacks:
   - {fileID: 11400000, guid: 3ce2555d737a89e468a5d91ca6719947, type: 2}
   targetTag: Player
