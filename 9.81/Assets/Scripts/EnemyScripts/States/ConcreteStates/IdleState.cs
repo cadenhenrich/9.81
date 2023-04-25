@@ -31,6 +31,10 @@ public class IdleState : EnemyBaseState
     {
         //throw new System.NotImplementedException();
         //try to check if player is in sight
+        if (stateManager.CanSeeTarget())
+        {
+            stateManager.ChangeState(stateManager.alertState);
+        }
     }
 
     private IEnumerator Wait(EnemyStateManager stateManager)
