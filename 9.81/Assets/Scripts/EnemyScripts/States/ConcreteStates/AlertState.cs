@@ -1,19 +1,40 @@
+using System.Collections;
 using UnityEngine;
 
 public class AlertState : EnemyBaseState
 {
-    public override void OnCollisionEnter(EnemyStateManager stateManager, Collision collision)
+    private bool isAlert = false;
+
+    public override void FixedUpdateState(EnemyStateManager stateManager)
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
+    }
+
+    public override void OnStateCollisionEnter(EnemyStateManager stateManager, Collision2D collision)
+    {
+        //throw new System.NotImplementedException();
     }
 
     public override void OnEnterState(EnemyStateManager stateManager)
     {
-        throw new System.NotImplementedException();
+        if (!isAlert)
+        {
+            stateManager.StartCoroutine(Wait(stateManager));
+        }
     }
 
     public override void UpdateState(EnemyStateManager stateManager)
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
+    }
+
+    private IEnumerator Wait(EnemyStateManager stateManager)
+    {
+        isAlert = true;
+        stateManager.exclaimationPoint.SetActive(true);
+        yield return new WaitForSeconds(1);
+        stateManager.ChangeState(stateManager.chaseState);
+        stateManager.exclaimationPoint.SetActive(false);
+        isAlert = false;
     }
 }

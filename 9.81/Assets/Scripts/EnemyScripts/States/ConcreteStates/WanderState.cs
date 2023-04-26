@@ -3,24 +3,36 @@ using UnityEngine;
 
 public class WanderState : EnemyBaseState
 {
-    public override void OnCollisionEnter(EnemyStateManager stateManager, Collision collision)
+    public override void FixedUpdateState(EnemyStateManager stateManager)
     {
-        stateManager.ChangeState(stateManager.alertState);
+        stateManager.pathingAgent.UpdateMovement();
+        if (stateManager.currentState == stateManager.wanderState && stateManager.pathingAgent.ReachedTarget())
+        {
+            
+            stateManager.ChangeState(stateManager.idleState);
+        }
+    }
+
+    public override void OnStateCollisionEnter(EnemyStateManager stateManager, Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag(stateManager.agroTarget.gameObject.tag)) 
+        { 
+            stateManager.ChangeState(stateManager.alertState);
+        }
     }
 
     public override void OnEnterState(EnemyStateManager stateManager)
     {
-        throw new System.NotImplementedException();
-        /* 
-         
-         */
+        stateManager.pathingAgent.PathRefreshing(true);
+        stateManager.pathingAgent.SetTarget(stateManager.wanderPoints[stateManager.currentWanderPoint].transform);
+        stateManager.currentWanderPoint = (stateManager.currentWanderPoint + 1) % stateManager.wanderPoints.Length;
     }
 
     public override void UpdateState(EnemyStateManager stateManager)
     {
-        throw new System.NotImplementedException();
-        /* 
-         move enemy towards
-         */
+        if (stateManager.CanSeeTarget())
+        {
+            stateManager.ChangeState(stateManager.alertState);
+        }
     }
 }

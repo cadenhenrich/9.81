@@ -6,7 +6,10 @@ using UnityEngine;
 public class AttackScriptableObject : ScriptableObject
 {
     public int damage;
-    public float range;
+    public float fireRange;
+    public float fireSpeed;
+    public bool isMelee;
     public float attackChargeUpInSeconds;
-    public AttackScriptableObject[] _attackSequence;
+    public float attackCooldownInSeconds;
+    //public AttackScriptableObject[] _attackSequence;
 }
