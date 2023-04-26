@@ -35,6 +35,9 @@ public class EnemyStateManager : MonoBehaviour
     private Vector2 attackDirection;
     [HideInInspector] public bool canAttack;
 
+    EnemyDamager enemyDamager;
+    EnemyHealth enemyHealth;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -47,6 +50,12 @@ public class EnemyStateManager : MonoBehaviour
         pathingAgent.SetRefreshRate(enemyScriptableObject.reactionTime);
         pathingAgent.SetSpeed(enemyScriptableObject.speed);
         pathingAgent.SetJumpHeight(enemyScriptableObject.jumpHeight);
+
+        enemyDamager = GetComponent<EnemyDamager>();
+        enemyHealth = GetComponent<EnemyHealth>();
+        enemyDamager.SetDamage(enemyScriptableObject._typesOfAttacks[currentAttack].damage);
+        enemyHealth.SetKnockBack(enemyScriptableObject.xKnockbackScale, enemyScriptableObject.yKnockbackScale);
+        enemyHealth.SetHealth(enemyScriptableObject.hitsCanTake);
     }
 
     private void Start()

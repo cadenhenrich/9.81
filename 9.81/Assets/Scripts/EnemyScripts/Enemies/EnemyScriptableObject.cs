@@ -12,6 +12,8 @@ public class EnemyScriptableObject : ScriptableObject
     public float detectionRadius;
     [Tooltip("The refresh rate of enemy pathing")] [Range(0.2f, 1f)] public float reactionTime;
     [Tooltip("From/To")] public RangeData RandomIdleTimeInSecondsWhileWandering;
+    public float xKnockbackScale;
+    public float yKnockbackScale;
 
     [Header("Behaviors")]
     [Tooltip("Randomly selects an attack from this list")] public AttackScriptableObject[] _typesOfAttacks;

@@ -27,6 +27,11 @@ public class EnemyDamager : MonoBehaviour, Damager
         return damage;
     }
 
+    public void SetDamage(float damageToSet)
+    {
+        damage = damageToSet;
+    }
+
     IEnumerator Cooldown()
     {
         canDamage = false;
