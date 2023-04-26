@@ -103,7 +103,7 @@ SpriteRenderer:
   m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &7022923148550789892
@@ -191,7 +191,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23807cdcbb336ff41adf96e0b78bd5d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyScriptableObject: {fileID: 11400000, guid: a899bbe599d5db74d8f3138d0ec70411, type: 2}
+  exclaimationPoint: {fileID: 0}
+  agroTarget: {fileID: 0}
+  pathingAgent: {fileID: 0}
+  attackAgent: {fileID: 0}
   wanderPoints: []
+  currentWanderPoint: 0
+  target: {fileID: 0}
+  rb: {fileID: 0}
+  currentAttack: 0
+  canAttack: 0
 --- !u!1 &7692908284980565232
 GameObject:
   m_ObjectHideFlags: 0
