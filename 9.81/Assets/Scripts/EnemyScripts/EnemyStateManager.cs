@@ -24,6 +24,7 @@ public class EnemyStateManager : MonoBehaviour
     private int layerMask = 1 << 7;
 
     public EnemyBaseState currentState;
+    public Animator anim;
 
     public WanderState wanderState = new WanderState();
     public ChaseState chaseState = new ChaseState();
@@ -95,6 +96,7 @@ public class EnemyStateManager : MonoBehaviour
         Vector2 direction = agroTarget.transform.position - transform.position;
         if (Physics2D.Raycast(transform.position, direction, enemyScriptableObject.detectionRadius, layerMask)) { return false; }
 
+        anim.SetInteger("AnimState", 1);
         return true;
 
     }
