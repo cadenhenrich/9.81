@@ -29,7 +29,7 @@ public class PhysicalDamager : MonoBehaviour, Damager
 
     public void DealDamage(Damageable damageable)
     {
-        float damage = maxDamage * (rb.velocity.magnitude * velocityCoefficient / maxVelocity);
+        float damage = Mathf.Clamp(maxDamage * (rb.velocity.magnitude * velocityCoefficient / maxVelocity), 0, maxDamage);
         damageable.TakeDamage(damage);
         StartCoroutine(BulletTime(damage));
     }
