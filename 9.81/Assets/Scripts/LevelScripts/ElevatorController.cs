@@ -14,8 +14,6 @@ public class ElevatorController : MonoBehaviour
 
     [Space]
 
-    [SerializeField, Tooltip("The input for using the elevator")]
-    private InputAction useAction;
     [SerializeField, Tooltip("The prompt to show when the player is in range")]
     private GameObject usePrompt;
 
@@ -28,27 +26,22 @@ public class ElevatorController : MonoBehaviour
         {
             playerTransform = transform;
         }
-
-        useAction.started += OnUse;
     }
 
     private void Update()
     {
-        if (Vector3.Distance(playerTransform.position, transform.position) < range)
+        if (usable && Vector3.Distance(playerTransform.position, transform.position) < range)
         {
             usePrompt.SetActive(true);
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                playerTransform.position = destination.position;
+            }
         }
         else
         {
             usePrompt.SetActive(false);
-        }
-    }
-
-    private void OnUse(InputAction.CallbackContext context)
-    {
-        if (usePrompt.activeSelf)
-        {
-            playerTransform.position = destination.position;
         }
     }
 }
