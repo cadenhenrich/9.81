@@ -122,7 +122,6 @@ public class PushPullBehavior : MonoBehaviour
 
     Vector3 GetPointInTargetRange(Vector3 point, float radius)
     {
-        Debug.Log("Clamping point " + point + " to radius " + radius);
         Vector2 point2 = new Vector2(point.x, point.y);
         Vector2 player2 = new Vector2(playerTransform.position.x, playerTransform.position.y);
 

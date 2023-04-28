@@ -7,6 +7,14 @@ public class EnemyHealth : AbstractDamageable
 {
     private float xKnockback;
     private float yKnockback;
+
+    private Animator anim;
+
+    private void Start()
+    {
+        anim = GetComponentInChildren<Animator>();
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Damager damager = collision.gameObject.GetComponent<Damager>();
@@ -24,8 +32,8 @@ public class EnemyHealth : AbstractDamageable
                 Rigidbody2D rb = GetComponent<Rigidbody2D>();
                 rb.AddForce(collisionDirection, ForceMode2D.Impulse);
             }
-            
-            
+
+            StartCoroutine(Stun());
         }
     }
 
@@ -40,8 +48,16 @@ public class EnemyHealth : AbstractDamageable
         xKnockback = xForceScale;
         yKnockback = yForceScale;
     }
+
     public void SetHealth(float hp)
     {
         health = hp;
+    }
+
+    private IEnumerator Stun()
+    {
+        anim.SetBool("IsStunned", true);
+        yield return new WaitForSeconds(0.5f);
+        anim.SetBool("IsStunned", false);
     }
 }

@@ -43,6 +43,8 @@ public class EnemyStateManager : MonoBehaviour
     EnemyDamager enemyDamager;
     EnemyHealth enemyHealth;
 
+    private float initialXScale;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -66,6 +68,9 @@ public class EnemyStateManager : MonoBehaviour
     private void Start()
     {
         currentState.OnEnterState(this);
+
+        anim = GetComponentInChildren<Animator>();
+        initialXScale = transform.localScale.x;
     }
 
 
@@ -73,6 +78,26 @@ public class EnemyStateManager : MonoBehaviour
     void Update()
     {
         currentState.UpdateState(this);
+
+        if (anim != null)
+        {
+          if (rb.velocity.magnitude > 0.01f)
+          {
+            anim.SetBool("IsWalking", true);
+            if (rb.velocity.x < 0)
+            {
+              transform.localScale = new Vector3(-initialXScale, transform.localScale.y, transform.localScale.z);
+            }
+            else if (rb.velocity.x > 0)
+            {
+              transform.localScale = new Vector3(initialXScale, transform.localScale.y, transform.localScale.z);
+            }
+          }
+          else
+          {
+            anim.SetBool("IsWalking", false);
+          }
+        }
     }
 
     private void FixedUpdate()
@@ -100,7 +125,6 @@ public class EnemyStateManager : MonoBehaviour
         Vector2 direction = agroTarget.transform.position - transform.position;
         if (Physics2D.Raycast(transform.position, direction, enemyScriptableObject.detectionRadius, layerMask)) { return false; }
 
-        anim.SetInteger("AnimState", 1);
         return true;
 
     }
