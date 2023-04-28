@@ -19,6 +19,8 @@ public class PushPullBehavior : MonoBehaviour
 
     [Header("Push")]
     [SerializeField]
+    public bool pushEnabled;
+    [SerializeField]
     private InputAction pushAction;
     [SerializeField]
     private float pushForce;
@@ -30,6 +32,8 @@ public class PushPullBehavior : MonoBehaviour
     private float pushCooldown;
 
     [Header("Pull")]
+    [SerializeField]
+    public bool pullEnabled;
     [SerializeField]
     private InputAction pullAction;
     [SerializeField]
