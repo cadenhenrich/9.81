@@ -52,6 +52,8 @@ public class PushPullBehavior : MonoBehaviour
 
     private Transform playerTransform;
 
+    private Animator anim;
+
     void Awake()
     {
         pushAction.started += OnPushTarget;
@@ -85,21 +87,36 @@ public class PushPullBehavior : MonoBehaviour
         }
 
         state = PushPullState.Idle;
+
+        anim = GetComponentInChildren<Animator>();
     }
 
     void Update()
     {
-        if (targetInstance != null)
+        switch (state)
         {
-            switch (state)
-            {
-                case PushPullState.TargetingPush:
+            case PushPullState.TargetingPush:
+                anim.SetInteger("GravityState", 1);
+                if (targetInstance != null)
+                {
                     targetInstance.transform.position = GetPointInTargetRange(GetMouseScreenPosition(), pushUseRadius);
-                    break;
-                case PushPullState.TargetingPull:
+                }
+                break;
+            case PushPullState.TargetingPull:
+                anim.SetInteger("GravityState", 1);
+                if (targetInstance != null)
+                {
                     targetInstance.transform.position = GetPointInTargetRange(GetMouseScreenPosition(), pullUseRadius);
-                    break;
-            }
+                }
+                break;
+            case PushPullState.Pushing:
+            case PushPullState.Pulling:
+                anim.SetInteger("GravityState", 2);
+                break;
+            case PushPullState.Recharging:
+            case PushPullState.Idle:
+                anim.SetInteger("GravityState", 0);
+                break;
         }
     }
 

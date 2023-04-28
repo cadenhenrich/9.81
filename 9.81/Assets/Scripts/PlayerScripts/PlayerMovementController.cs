@@ -82,6 +82,9 @@ public class PlayerMovementController : MonoBehaviour
 
   private bool isGrounded;
 
+  private Animator anim;
+  private float initialXScale;
+
   private Vector2 velocity;
 
   // Start is called before the first frame update
@@ -89,6 +92,8 @@ public class PlayerMovementController : MonoBehaviour
   {
     rb = GetComponent<Rigidbody2D>();
     col = GetComponent<Collider2D>();
+    anim = GetComponentInChildren<Animator>();
+    initialXScale = transform.localScale.x;
   }
 
   // Update is called every frame
@@ -107,6 +112,26 @@ public class PlayerMovementController : MonoBehaviour
 
     // Apply changes
     ApplyVelocity();
+
+    if (anim != null)
+    {
+      if (rb.velocity.magnitude > 0.01f)
+      {
+        anim.SetBool("IsMoving", true);
+        if (rb.velocity.x < 0)
+        {
+          transform.localScale = new Vector3(-initialXScale, transform.localScale.y, transform.localScale.z);
+        }
+        else if (rb.velocity.x > 0)
+        {
+          transform.localScale = new Vector3(initialXScale, transform.localScale.y, transform.localScale.z);
+        }
+      }
+      else
+      {
+        anim.SetBool("IsMoving", false);
+      }
+    }
   }
 
   private void Walk()
