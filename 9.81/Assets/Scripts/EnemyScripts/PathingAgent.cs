@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
+[RequireComponent(typeof(Seeker))]
 public class PathingAgent : MonoBehaviour
 {
     [HideInInspector] public float NEXT_WAYPOINT_DISTANCE { get; private set; } = 2f;

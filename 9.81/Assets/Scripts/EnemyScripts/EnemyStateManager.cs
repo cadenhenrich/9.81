@@ -6,6 +6,10 @@ using UnityEditor;
 using UnityEngine.UI;
 using System;
 
+[RequireComponent(typeof(PathingAgent))]
+[RequireComponent(typeof(AttackAgent))]
+[RequireComponent(typeof(EnemyHealth))]
+[RequireComponent(typeof(EnemyDamager))]
 public class EnemyStateManager : MonoBehaviour
 {
 

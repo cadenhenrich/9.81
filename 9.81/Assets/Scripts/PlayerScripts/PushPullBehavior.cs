@@ -7,7 +7,8 @@ public class PushPullBehavior : MonoBehaviour
 {
     private enum PushPullState
     {
-        Targeting,
+        TargetingPush,
+        TargetingPull,
         Pushing,
         Pulling,
         Recharging,
@@ -86,8 +87,25 @@ public class PushPullBehavior : MonoBehaviour
         state = PushPullState.Idle;
     }
 
+    void Update()
+    {
+        if (targetInstance != null)
+        {
+            switch (state)
+            {
+                case PushPullState.TargetingPush:
+                    targetInstance.transform.position = GetPointInTargetRange(GetMouseScreenPosition(), pushUseRadius);
+                    break;
+                case PushPullState.TargetingPull:
+                    targetInstance.transform.position = GetPointInTargetRange(GetMouseScreenPosition(), pullUseRadius);
+                    break;
+            }
+        }
+    }
+
     Vector3 GetPointInTargetRange(Vector3 point, float radius)
     {
+        Debug.Log("Clamping point " + point + " to radius " + radius);
         Vector2 point2 = new Vector2(point.x, point.y);
         Vector2 player2 = new Vector2(playerTransform.position.x, playerTransform.position.y);
 
@@ -108,28 +126,32 @@ public class PushPullBehavior : MonoBehaviour
 
     void OnTarget(float radius)
     {
-        if (state == PushPullState.Idle)
-        {
-            targetInstance = Instantiate(targetPrefab,
-                GetPointInTargetRange(GetMouseScreenPosition(), radius),
-                Quaternion.identity);
-            state = PushPullState.Targeting;
-        }
+        targetInstance = Instantiate(targetPrefab,
+            GetPointInTargetRange(GetMouseScreenPosition(), radius),
+            Quaternion.identity);
     }
 
     void OnPushTarget(InputAction.CallbackContext context)
     {
-        OnTarget(pushUseRadius);
+        if (state == PushPullState.Idle)
+        {
+            OnTarget(pushUseRadius);
+            state = PushPullState.TargetingPush;
+        }
     }
 
     void OnPullTarget(InputAction.CallbackContext context)
     {
-        OnTarget(pullUseRadius);
+        if (state == PushPullState.Idle)
+        {
+            OnTarget(pullUseRadius);
+            state = PushPullState.TargetingPull;
+        }
     }
 
     void OnPushCancel(InputAction.CallbackContext context)
     {
-        if (state == PushPullState.Targeting)
+        if (state == PushPullState.TargetingPush)
         {
             Destroy(targetInstance);
             state = PushPullState.Pushing;
@@ -139,23 +161,11 @@ public class PushPullBehavior : MonoBehaviour
 
     void OnPullCancel(InputAction.CallbackContext context)
     {
-        if (state == PushPullState.Targeting)
+        if (state == PushPullState.TargetingPull)
         {
             Destroy(targetInstance);
             state = PushPullState.Pulling;
             Pull(GetPointInTargetRange(GetMouseScreenPosition(), pullEffectRadius));
-        }
-    }
-
-    void Update()
-    {
-        switch (state)
-        {
-            case PushPullState.Targeting:
-                targetInstance.transform.position = GetPointInTargetRange(GetMouseScreenPosition(), pushEffectRadius);
-                break;
-            default:
-                break;
         }
     }
 

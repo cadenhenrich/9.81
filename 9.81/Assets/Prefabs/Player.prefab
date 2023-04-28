@@ -106,7 +106,7 @@ MonoBehaviour:
   acceleration: 33.333332
   friction: 20
   jumpAxis: Jump
-  jumpSpeed: 18
+  jumpSpeed: 10
   groundCheckDistance: 0.05
   gravity: 6.6666665
   maxFallSpeed: 15
