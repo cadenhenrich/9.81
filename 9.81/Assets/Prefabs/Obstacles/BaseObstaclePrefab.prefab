@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1964790438530448189}
   - component: {fileID: 8489529521155996067}
   - component: {fileID: 4383697779947581343}
+  - component: {fileID: -1931508521900623569}
   m_Layer: 7
   m_Name: BaseObstaclePrefab
   m_TagString: Obstacle
@@ -107,7 +108,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1964790438530448187}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
   m_Name: 
@@ -116,6 +117,20 @@ MonoBehaviour:
   uniqueID: 3461582335137352944
   updateError: 1
   checkTime: 0.2
+--- !u!114 &-1931508521900623569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964790438530448187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a1a79f68a9ae4d54a968777dd0e8093, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPassthrough: 1
+  passthroughCooldown: 2
 --- !u!1 &7779486222867740925
 GameObject:
   m_ObjectHideFlags: 0

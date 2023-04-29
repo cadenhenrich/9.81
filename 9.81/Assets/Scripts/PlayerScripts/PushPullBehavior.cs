@@ -220,6 +220,12 @@ public class PushPullBehavior : MonoBehaviour
                 hob.Detatch();
             }
 
+            PassthroughObstacleBehavior po = collider.GetComponent<PassthroughObstacleBehavior>();
+            if (po != null)
+            {
+                po.StartBlocking();
+            }
+
             Rigidbody2D rigidbody = collider.GetComponent<Rigidbody2D>();
             if (rigidbody != null && !rigidbody.CompareTag("Player"))
             {

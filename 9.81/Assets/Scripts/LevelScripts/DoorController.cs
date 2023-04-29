@@ -9,7 +9,7 @@ public class DoorController : MonoBehaviour
     [SerializeField, Tooltip("How fast the door will open and close")]
     private float speed;
     [SerializeField, Tooltip("The distance to the player at which the door will open")]
-    private int distance;
+    private float distance;
 
     private Vector3 initialPosition;
 
@@ -28,7 +28,7 @@ public class DoorController : MonoBehaviour
     void Update()
     {
         if (Mathf.Abs(transform.position.x-playerTransform.position.x) <= distance && 
-            Mathf.Abs(transform.position.y-playerTransform.position.y) <= distance)
+            Mathf.Abs(transform.position.y-playerTransform.position.y) <= distance + offset)
         {
             transform.position = Vector3.MoveTowards(transform.position, initialPosition + new Vector3(0, offset, 0), speed * Time.deltaTime);
         }
