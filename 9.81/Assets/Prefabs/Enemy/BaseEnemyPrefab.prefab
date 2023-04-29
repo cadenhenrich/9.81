@@ -333,6 +333,7 @@ MonoBehaviour:
   anim: {fileID: 944287170}
   currentAttack: 0
   canAttack: 0
+  facingLeft: 0
 --- !u!114 &3404400903910259232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,8 +403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d222654044eb2de1cb6c809d233b8455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
   hitSound: {fileID: 8300000, guid: f56a2230608b1bf47808a0b4332c9dd9, type: 3}
+  deathEffect: {fileID: 1906681135952509424, guid: cacb8ff1d9235f65cb392243f8787e51, type: 3}
 --- !u!114 &6551230928300629981
 MonoBehaviour:
   m_ObjectHideFlags: 0

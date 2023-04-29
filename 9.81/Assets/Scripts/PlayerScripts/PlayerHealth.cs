@@ -23,6 +23,11 @@ public class PlayerHealth : AbstractDamageable
         {
             sprite.enabled = false;
         }
-        Invoke("GameManager.Instance.RestartLevel", 2f);
+        Invoke("Restart", 2f);
+    }
+
+    private void Restart()
+    {
+        GameManager.Instance.RestartLevel();
     }
 }

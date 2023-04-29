@@ -13,6 +13,9 @@ public class EnemyHealth : AbstractDamageable
     private Animator anim;
     private EnemyStateManager stateManager;
 
+    [SerializeField]
+    private GameObject deathEffect;
+
     private void Start()
     {
         anim = GetComponentInChildren<Animator>();
@@ -46,6 +49,7 @@ public class EnemyHealth : AbstractDamageable
     protected override void Die()
     {
         base.Die();
+        Instantiate(deathEffect, transform.position, Quaternion.identity);
         GameManager.Instance.EnemyDied();
         Destroy(gameObject);
     }

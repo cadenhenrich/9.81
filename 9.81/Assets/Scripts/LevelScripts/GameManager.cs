@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
             level = SceneManager.GetActiveScene().buildIndex;
             DontDestroyOnLoad(gameObject);
         }
-        else
+        else if (Instance != this)
         {
             Destroy(gameObject);
         }
