@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
+[RequireComponent(typeof(EnemyStateManager))]
 public class EnemyHealth : AbstractDamageable
 {
+    private new float maxHealth; 
     private float xKnockback;
     private float yKnockback;
 
     private Animator anim;
+    private EnemyStateManager stateManager;
 
     private void Start()
     {
         anim = GetComponentInChildren<Animator>();
+        stateManager = GetComponent<EnemyStateManager>();
+        maxHealth = stateManager.enemyScriptableObject.hitsCanTake;
+        health = maxHealth;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

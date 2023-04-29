@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class AbstractDamageable : MonoBehaviour, Damageable
 {
-    [SerializeField]
     protected float maxHealth;
 
     [SerializeField]
@@ -46,7 +45,6 @@ public abstract class AbstractDamageable : MonoBehaviour, Damageable
 
     void Start()
     {
-        health = maxHealth;
         audioSource = GetComponent<AudioSource>();
     }
 

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerHealth : AbstractDamageable
 {
+    [SerializeField]
+    protected new float maxHealth;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Damager damager = collision.gameObject.GetComponent<Damager>();
