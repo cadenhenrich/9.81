@@ -207,7 +207,7 @@ public class PushPullBehavior : MonoBehaviour
         foreach (Collider2D collider in overlaps)
         {
             RaycastHit2D hit = Physics2D.Raycast(coordinates, collider.transform.position - new Vector3(coordinates.x, coordinates.y, 0f));
-            if (!hit.collider.CompareTag("Obstacle") && !hit.collider.CompareTag("Enemy")) 
+            if (!hit || !hit.collider.CompareTag("Obstacle")) 
             {
                 continue;
             }

@@ -10,12 +10,19 @@ public class GameManager : MonoBehaviour
     private int level = 0;
     private int enemies = 0;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioClip levelTransition;
+    [SerializeField]
+    private AudioClip gameStart;
+
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             level = SceneManager.GetActiveScene().buildIndex;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -26,6 +33,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        PlayClip(gameStart);
     }
 
     public int GetLevel()
@@ -37,6 +45,7 @@ public class GameManager : MonoBehaviour
     {
         this.level = level;
         SceneManager.LoadScene(level);
+        PlayClip(levelTransition);
     }
 
     public void GotoNextLevel()
@@ -46,7 +55,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartLevel()
     {
-        SceneManager.LoadScene(level);
+        GotoLevel(level);
     }
 
     public void EnemyDied()
@@ -61,5 +70,15 @@ public class GameManager : MonoBehaviour
     void OnDestroy()
     {
         Instance = null;
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void PlayClip(AudioClip clip)
+    {
+        AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position);
     }
 }
