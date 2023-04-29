@@ -146,6 +146,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 678916ec465edc68cb9df8e944e2883b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: 3
-  speed: 3
-  distance: 2
+  detectionDistance: 2
