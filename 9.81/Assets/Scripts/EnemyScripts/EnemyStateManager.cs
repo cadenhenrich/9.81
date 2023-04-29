@@ -46,6 +46,8 @@ public class EnemyStateManager : MonoBehaviour
     EnemyHealth enemyHealth;
 
     private float initialXScale;
+    [SerializeField]
+    private bool facingLeft = false;
 
     // Start is called before the first frame update
     private void Awake()
@@ -74,6 +76,11 @@ public class EnemyStateManager : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         initialXScale = transform.localScale.x;
         audioSource = GetComponent<AudioSource>();
+
+        if (facingLeft)
+        {
+            transform.localScale = new Vector3(-initialXScale, transform.localScale.y, transform.localScale.z);
+        }
     }
 
 
