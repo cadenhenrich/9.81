@@ -303,6 +303,8 @@ MonoBehaviour:
   targetPrefab: {fileID: 6846138506289286957, guid: 6e3f21d1a60bffedaade9f37cc0c2fc2, type: 3}
   pushEffectPrefab: {fileID: 0}
   pullEffectPrefab: {fileID: 0}
+  pushSound: {fileID: 8300000, guid: 6ed0cd681428e754abb19b574091b92a, type: 3}
+  pullSound: {fileID: 8300000, guid: 6ed0cd681428e754abb19b574091b92a, type: 3}
 --- !u!114 &-4401289625523524607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,6 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  hitSound: {fileID: 8300000, guid: 5c3b29cbbe105204c8178148e485902a, type: 3}
 --- !u!212 &1534030343
 SpriteRenderer:
   m_ObjectHideFlags: 0

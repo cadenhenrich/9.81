@@ -7,6 +7,10 @@ public abstract class AbstractDamageable : MonoBehaviour, Damageable
     [SerializeField]
     protected float maxHealth;
 
+    [SerializeField]
+    protected AudioClip hitSound;
+    protected AudioSource audioSource;
+
     protected float health;
     protected bool isAlive = true;
 
@@ -20,8 +24,13 @@ public abstract class AbstractDamageable : MonoBehaviour, Damageable
         return isAlive;
     }
 
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     {
+        if (audioSource != null)
+        {
+            audioSource.PlayOneShot(hitSound);
+        }
+
         health -= damage;
         if (health <= 0)
         {
@@ -38,6 +47,7 @@ public abstract class AbstractDamageable : MonoBehaviour, Damageable
     void Start()
     {
         health = maxHealth;
+        audioSource = GetComponent<AudioSource>();
     }
 
 }

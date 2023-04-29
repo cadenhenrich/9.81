@@ -54,9 +54,15 @@ public class PushPullBehavior : MonoBehaviour
     [SerializeField]
     private GameObject pullEffectPrefab;
 
-    private Transform playerTransform;
+    [Header("SFX")]
+    [SerializeField]
+    private AudioClip pushSound;
+    [SerializeField]
+    private AudioClip pullSound;
 
+    private Transform playerTransform;
     private Animator anim;
+    private AudioSource audioSource;
 
     void Awake()
     {
@@ -93,6 +99,7 @@ public class PushPullBehavior : MonoBehaviour
         state = PushPullState.Idle;
 
         anim = GetComponentInChildren<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -191,12 +198,14 @@ public class PushPullBehavior : MonoBehaviour
 
     void Push(Vector2 coordinates)
     {
+        audioSource.PlayOneShot(pushSound);
         ApplyGravityEffect(coordinates, pushForce, pushUseRadius);
         StartCoroutine(Cooldown(pushCooldown));
     }
 
     void Pull(Vector2 coordinates)
     {
+        audioSource.PlayOneShot(pullSound);
         ApplyGravityEffect(coordinates, -pullForce, pullEffectRadius);
         StartCoroutine(Cooldown(pullCooldown));
     }

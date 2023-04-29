@@ -403,6 +403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
+  hitSound: {fileID: 8300000, guid: f56a2230608b1bf47808a0b4332c9dd9, type: 3}
 --- !u!114 &6551230928300629981
 MonoBehaviour:
   m_ObjectHideFlags: 0
