@@ -83,10 +83,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamp
       objectReference: {fileID: 0}
-    - target: {fileID: 1964790438530448187, guid: ea734f4f64d0ebd7599a4727ae0cb9d2, type: 3}
-      propertyPath: m_TagString
-      value: Obstacle
-      objectReference: {fileID: 0}
     - target: {fileID: 1964790438530448188, guid: ea734f4f64d0ebd7599a4727ae0cb9d2, type: 3}
       propertyPath: m_Size.x
       value: 0.5386461
@@ -105,7 +101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4383697779947581343, guid: ea734f4f64d0ebd7599a4727ae0cb9d2, type: 3}
       propertyPath: uniqueID
-      value: 8831162491480496808
+      value: 7262836359755157636
       objectReference: {fileID: 0}
     - target: {fileID: 8723909042143561346, guid: ea734f4f64d0ebd7599a4727ae0cb9d2, type: 3}
       propertyPath: m_Sprite

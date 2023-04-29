@@ -212,7 +212,7 @@ public class PushPullBehavior : MonoBehaviour
                 continue;
             }
 
-            Rigidbody2D rigidbody = collider.GetComponent<Rigidbody2D>();
+            collider.isTrigger = false;
 
             HangingObstacleBehavior hob = collider.GetComponent<HangingObstacleBehavior>();
             if (hob != null)
@@ -220,6 +220,7 @@ public class PushPullBehavior : MonoBehaviour
                 hob.Detatch();
             }
 
+            Rigidbody2D rigidbody = collider.GetComponent<Rigidbody2D>();
             if (rigidbody != null && !rigidbody.CompareTag("Player"))
             {
                 Vector2 delta = rigidbody.position - coordinates;

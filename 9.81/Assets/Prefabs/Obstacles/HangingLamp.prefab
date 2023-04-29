@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 1964790438530448189}
   - component: {fileID: 8489529521155996067}
   - component: {fileID: 4383697779947581343}
+  - component: {fileID: 81101043108407159}
   m_Layer: 7
-  m_Name: BaseObstaclePrefab
+  m_Name: HangingLamp
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1964790438530448187}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -10.83, y: 1.04, z: -0.0313}
-  m_LocalScale: {x: 0.97039074, y: 0.99369997, z: 0.99369997}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 546706443495176922}
@@ -49,7 +50,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.046974093, y: 0.06798848}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -60,7 +61,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.24506634, y: 0.32011497}
   m_EdgeRadius: 0
 --- !u!50 &1964790438530448189
 Rigidbody2D:
@@ -116,6 +117,18 @@ MonoBehaviour:
   uniqueID: 3461582335137352944
   updateError: 1
   checkTime: 0.2
+--- !u!114 &81101043108407159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964790438530448187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad1af04762c2627c95502d2c00ac572, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7779486222867740925
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,7 +155,7 @@ Transform:
   m_GameObject: {fileID: 7779486222867740925}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.031498443}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1964790438530448186}
@@ -189,12 +202,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.8148705, g: 0.57924527, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 4508908901f39c24888c885f383db0e0, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
