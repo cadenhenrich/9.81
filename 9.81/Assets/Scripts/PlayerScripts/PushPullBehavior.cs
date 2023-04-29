@@ -122,9 +122,8 @@ public class PushPullBehavior : MonoBehaviour
                 break;
             case PushPullState.Pushing:
             case PushPullState.Pulling:
-                anim.SetInteger("GravityState", 2);
-                break;
             case PushPullState.Recharging:
+                break;
             case PushPullState.Idle:
                 anim.SetInteger("GravityState", 0);
                 break;
