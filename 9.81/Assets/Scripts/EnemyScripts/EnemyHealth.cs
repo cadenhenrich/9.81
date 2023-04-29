@@ -40,6 +40,7 @@ public class EnemyHealth : AbstractDamageable
     protected override void Die()
     {
         base.Die();
+        GameManager.Instance.EnemyDied();
         Destroy(gameObject);
     }
 

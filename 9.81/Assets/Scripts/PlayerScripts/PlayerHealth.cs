@@ -16,6 +16,10 @@ public class PlayerHealth : AbstractDamageable
     protected override void Die()
     {
         base.Die();
-        Debug.Log("Player died");
+        foreach (SpriteRenderer sprite in GetComponentsInChildren<SpriteRenderer>())
+        {
+            sprite.enabled = false;
+        }
+        Invoke("GameManager.Instance.RestartLevel", 2f);
     }
 }
