@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private AudioClip gameStart;
 
+    private AudioSource audioSource;
+
     void Awake()
     {
         if (Instance == null)
@@ -33,6 +35,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        audioSource = GetComponent<AudioSource>();
         PlayClip(gameStart);
     }
 
@@ -79,6 +82,6 @@ public class GameManager : MonoBehaviour
 
     public void PlayClip(AudioClip clip)
     {
-        AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position);
+        audioSource.PlayOneShot(clip);
     }
 }

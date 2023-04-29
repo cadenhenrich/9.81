@@ -80,6 +80,13 @@ public class PlayerMovementController : MonoBehaviour
   private float jumpQueueThreshold;
   private bool jumpQueued;
 
+  [Header("Audio")]
+  [SerializeField]
+  private AudioClip[] playerMovementClips;
+  [SerializeField]
+  private AudioClip playerJump;
+  private AudioSource audioSource;
+
   private bool isGrounded;
 
   private Animator anim;
@@ -93,6 +100,8 @@ public class PlayerMovementController : MonoBehaviour
     rb = GetComponent<Rigidbody2D>();
     col = GetComponent<Collider2D>();
     anim = GetComponentInChildren<Animator>();
+    audioSource = GetComponent<AudioSource>();
+
     initialXScale = transform.localScale.x;
   }
 
@@ -141,6 +150,11 @@ public class PlayerMovementController : MonoBehaviour
     if (axis != 0)
     {
       velocity.x += axis * acceleration * Time.deltaTime;
+      if (isGrounded && !audioSource.isPlaying)
+      {
+        audioSource.PlayOneShot(playerMovementClips[Random.Range(0,
+              playerMovementClips.Length)]);
+      }
     }
   }
 
@@ -217,6 +231,7 @@ public class PlayerMovementController : MonoBehaviour
         inCoyoteTime = false;
         jumpQueued = false;
         velocity.y = jumpSpeed;
+        audioSource.PlayOneShot(playerJump, 0.25f);
         return;
       }
       else if (!(jumpQueued || isGrounded))
