@@ -15,9 +15,11 @@ public class EnemyStateManager : MonoBehaviour
 
     public EnemyScriptableObject enemyScriptableObject;
     [SerializeField] public GameObject exclaimationPoint;
+    [SerializeField] public AudioClip[] moveSounds;
     [HideInInspector] public GameObject agroTarget;
     [HideInInspector] public PathingAgent pathingAgent;
     [HideInInspector] public AttackAgent attackAgent;
+    [HideInInspector] public AudioSource audioSource;
 
     public GameObject[] wanderPoints;
     
@@ -71,6 +73,7 @@ public class EnemyStateManager : MonoBehaviour
 
         anim = GetComponentInChildren<Animator>();
         initialXScale = transform.localScale.x;
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -92,6 +95,7 @@ public class EnemyStateManager : MonoBehaviour
             {
               transform.localScale = new Vector3(initialXScale, transform.localScale.y, transform.localScale.z);
             }
+            PlayRandomMoveSound();
           }
           else
           {
@@ -167,5 +171,14 @@ public class EnemyStateManager : MonoBehaviour
     {
         
         attackAgent.ExecuteMovementAttack(rb, attackDirection, attackScriptableObject);
+    }
+
+    public void PlayRandomMoveSound()
+    {
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(moveSounds[UnityEngine.Random.Range(0,
+                        moveSounds.Length)]);
+        }
     }
 }

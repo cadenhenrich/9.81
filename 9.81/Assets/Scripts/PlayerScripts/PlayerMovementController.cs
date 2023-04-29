@@ -231,6 +231,7 @@ public class PlayerMovementController : MonoBehaviour
         inCoyoteTime = false;
         jumpQueued = false;
         velocity.y = jumpSpeed;
+        audioSource.Stop();
         audioSource.PlayOneShot(playerJump, 0.25f);
         return;
       }
