@@ -206,6 +206,12 @@ public class PushPullBehavior : MonoBehaviour
         Collider2D[] overlaps = Physics2D.OverlapCircleAll(coordinates, radius);
         foreach (Collider2D collider in overlaps)
         {
+            RaycastHit2D hit = Physics2D.Raycast(coordinates, collider.transform.position - new Vector3(coordinates.x, coordinates.y, 0f));
+            if (!hit.collider.CompareTag("Obstacle") && !hit.collider.CompareTag("Enemy")) 
+            {
+                continue;
+            }
+
             Rigidbody2D rigidbody = collider.GetComponent<Rigidbody2D>();
 
             HangingObstacleBehavior hob = collider.GetComponent<HangingObstacleBehavior>();
