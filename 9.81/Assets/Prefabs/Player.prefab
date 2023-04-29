@@ -247,6 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d7ca8da373b98decad2bb6de49c1eaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pushEnabled: 1
   pushAction:
     m_Name: Push
     m_Type: 0
@@ -268,6 +269,7 @@ MonoBehaviour:
   pushEffectRadius: 3
   pushUseRadius: 5
   pushCooldown: 1
+  pullEnabled: 1
   pullAction:
     m_Name: Pull
     m_Type: 0

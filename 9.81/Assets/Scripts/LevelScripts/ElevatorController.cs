@@ -36,7 +36,7 @@ public class ElevatorController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E))
             {
-                playerTransform.position = destination.position;
+                playerTransform.position = new Vector3(destination.position.x, destination.position.y, playerTransform.position.z);
             }
         }
         else

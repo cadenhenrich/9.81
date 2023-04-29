@@ -99,6 +99,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chair
       objectReference: {fileID: 0}
+    - target: {fileID: 1964790438530448187, guid: ea734f4f64d0ebd7599a4727ae0cb9d2, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     - target: {fileID: 1964790438530448188, guid: ea734f4f64d0ebd7599a4727ae0cb9d2, type: 3}
       propertyPath: m_Size.x
       value: 1.3542001

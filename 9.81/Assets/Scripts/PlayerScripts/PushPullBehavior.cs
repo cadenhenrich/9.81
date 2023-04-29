@@ -153,7 +153,7 @@ public class PushPullBehavior : MonoBehaviour
 
     void OnPushTarget(InputAction.CallbackContext context)
     {
-        if (state == PushPullState.Idle)
+        if (pushEnabled && state == PushPullState.Idle)
         {
             OnTarget(pushUseRadius);
             state = PushPullState.TargetingPush;
@@ -162,7 +162,7 @@ public class PushPullBehavior : MonoBehaviour
 
     void OnPullTarget(InputAction.CallbackContext context)
     {
-        if (state == PushPullState.Idle)
+        if (pullEnabled && state == PushPullState.Idle)
         {
             OnTarget(pullUseRadius);
             state = PushPullState.TargetingPull;
@@ -207,6 +207,13 @@ public class PushPullBehavior : MonoBehaviour
         foreach (Collider2D collider in overlaps)
         {
             Rigidbody2D rigidbody = collider.GetComponent<Rigidbody2D>();
+
+            HangingObstacleBehavior hob = collider.GetComponent<HangingObstacleBehavior>();
+            if (hob != null)
+            {
+                hob.Detatch();
+            }
+
             if (rigidbody != null && !rigidbody.CompareTag("Player"))
             {
                 Vector2 delta = rigidbody.position - coordinates;
