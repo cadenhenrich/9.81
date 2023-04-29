@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPassthrough: 1
-  passthroughCooldown: 2
+  passthroughCooldown: 0.5
 --- !u!1 &7779486222867740925
 GameObject:
   m_ObjectHideFlags: 0
