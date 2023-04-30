@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartLevel()
     {
-        GotoLevel(level);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void EnemyDied()
