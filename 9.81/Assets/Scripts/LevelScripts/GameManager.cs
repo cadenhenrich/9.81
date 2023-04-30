@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     private AudioSource audioSource;
 
-    void Awake()
+    void Start()
     {
         if (Instance == null)
         {
@@ -30,10 +30,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
 
-    void Start()
-    {
         enemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
         audioSource = GetComponent<AudioSource>();
         PlayClip(gameStart);
