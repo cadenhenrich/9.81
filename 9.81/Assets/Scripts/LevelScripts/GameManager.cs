@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
-
+    public static GameManager Instance { get; private set; }
     private int level = 0;
     private int enemies = 0;
 
@@ -18,19 +17,20 @@ public class GameManager : MonoBehaviour
 
     private AudioSource audioSource;
 
+    private void Awake() 
+    { 
+        if (Instance != null && Instance != this) 
+        { 
+            Destroy(this); 
+        } 
+        else 
+        { 
+            Instance = this; 
+        } 
+    }
+
     void Start()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            level = SceneManager.GetActiveScene().buildIndex;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
-        }
-
         enemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
         audioSource = GetComponent<AudioSource>();
         PlayClip(gameStart);
