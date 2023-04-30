@@ -10,6 +10,8 @@ public class PhysicalDamager : MonoBehaviour, Damager
     private float maxDamage;
     [SerializeField]
     private float maxVelocity;
+    [SerializeField]
+    private float minVelocity;
     [SerializeField, Range(0, 1)]
     private float velocityCoefficient;
 
@@ -29,6 +31,11 @@ public class PhysicalDamager : MonoBehaviour, Damager
 
     public void DealDamage(Damageable damageable)
     {
+        if (rb.velocity.magnitude < minVelocity)
+        {
+            return;
+        }
+
         float damage = Mathf.Clamp(maxDamage * (rb.velocity.magnitude * velocityCoefficient / maxVelocity), 0, maxDamage);
         damageable.TakeDamage(damage);
         StartCoroutine(BulletTime(damage));
