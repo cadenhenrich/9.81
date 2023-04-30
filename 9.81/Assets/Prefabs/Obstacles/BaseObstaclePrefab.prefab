@@ -96,8 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9ca9c7632596c5c5b5a327c7e4f1a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDamage: 10
+  maxDamage: 15
   maxVelocity: 5
+  minVelocity: 4
   velocityCoefficient: 1
   bulletTimeCoefficient: 0.25
   bulletTimeLength: 0.1
@@ -130,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPassthrough: 1
-  passthroughCooldown: 0.5
+  passthroughCooldown: 0.25
 --- !u!1 &7779486222867740925
 GameObject:
   m_ObjectHideFlags: 0

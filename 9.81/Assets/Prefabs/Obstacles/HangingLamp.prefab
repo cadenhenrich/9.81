@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8489529521155996067}
   - component: {fileID: 4383697779947581343}
   - component: {fileID: 81101043108407159}
+  - component: {fileID: -8627376971817662397}
   m_Layer: 7
   m_Name: HangingLamp
   m_TagString: Obstacle
@@ -98,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxDamage: 10
   maxVelocity: 5
+  minVelocity: 0
   velocityCoefficient: 1
   bulletTimeCoefficient: 0.25
   bulletTimeLength: 0.1
@@ -129,6 +131,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad1af04762c2627c95502d2c00ac572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-8627376971817662397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964790438530448187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a1a79f68a9ae4d54a968777dd0e8093, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPassthrough: 1
+  passthroughCooldown: 0.25
 --- !u!1 &7779486222867740925
 GameObject:
   m_ObjectHideFlags: 0

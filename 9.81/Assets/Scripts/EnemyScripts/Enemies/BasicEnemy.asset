@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2413d33acace5bf499acf743a0e2f48a, type: 3}
   m_Name: BasicEnemy
   m_EditorClassIdentifier: 
-  hitsCanTake: 50
-  speed: 200
+  hitsCanTake: 10
+  speed: 100
   jumpHeight: 5
   detectionRadius: 4
   reactionTime: 0.5
