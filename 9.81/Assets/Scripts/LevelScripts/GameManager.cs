@@ -41,16 +41,9 @@ public class GameManager : MonoBehaviour
         return level;
     }
 
-    public void GotoLevel(int level)
-    {
-        this.level = level;
-        SceneManager.LoadScene(level);
-        PlayClip(levelTransition);
-    }
-
     public void GotoNextLevel()
     {
-        GotoLevel(level + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void RestartLevel()
