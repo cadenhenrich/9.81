@@ -214,8 +214,11 @@ public class PushPullBehavior : MonoBehaviour
         Collider2D[] overlaps = Physics2D.OverlapCircleAll(coordinates, radius);
         foreach (Collider2D collider in overlaps)
         {
-            RaycastHit2D hit = Physics2D.Raycast(coordinates, collider.transform.position - new Vector3(coordinates.x, coordinates.y, 0f));
-            if (!collider.CompareTag("Obstacle") || !hit || !hit.collider.CompareTag("Obstacle")) 
+            RaycastHit2D hit = Physics2D.Raycast(coordinates,
+                    collider.transform.position - new Vector3(coordinates.x,
+                        coordinates.y, 0f), Mathf.Infinity, 1 <<
+                    LayerMask.NameToLayer("levelArchitecture"));
+            if (!collider.CompareTag("Obstacle") || !hit || !hit.collider.CompareTag("Obstacle"))
             {
                 continue;
             }
