@@ -17,16 +17,16 @@ public class GameManager : MonoBehaviour
 
     private AudioSource audioSource;
 
-    private void Awake() 
-    { 
-        if (Instance != null && Instance != this) 
-        { 
-            Destroy(this); 
-        } 
-        else 
-        { 
-            Instance = this; 
-        } 
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
     }
 
     void Start()
@@ -39,6 +39,11 @@ public class GameManager : MonoBehaviour
     public int GetLevel()
     {
         return level;
+    }
+
+    public void GotoLevel(int level)
+    {
+        SceneManager.LoadScene(level);
     }
 
     public void GotoNextLevel()
